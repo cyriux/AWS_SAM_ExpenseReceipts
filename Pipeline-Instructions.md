@@ -18,22 +18,22 @@ Replace the placeholders with values corresponding to your GitHub Repo and Token
 
 ```bash
 aws ssm put-parameter \
-    --name "/service/aws_sam_expensereceipts/github/repo" \
-    --description "Github Repository name for Cloudformation Stack aws_sam_expensereceipts-pipeline" \
+    --name "/service/aws-sam-expensereceipts/github/repo" \
+    --description "Github Repository name for Cloudformation Stack aws-sam-expensereceipts-pipeline" \
     --type "String" \
-    --value "GITHUB_REPO_NAME"
+    --value "GITHUB_REPO_NAME"  --region eu-central-1
 
 aws ssm put-parameter \
-    --name "/service/aws_sam_expensereceipts/github/token" \
-    --description "Github Token for Cloudformation Stack aws_sam_expensereceipts-pipeline" \
+    --name "/service/aws-sam-expensereceipts/github/token" \
+    --description "Github Token for Cloudformation Stack aws-sam-expensereceipts-pipeline" \
     --type "String" \
-    --value "TOKEN"
+    --value "TOKEN"  --region eu-central-1
 
 aws ssm put-parameter \
-    --name "/service/aws_sam_expensereceipts/github/user" \
-    --description "Github Username for Cloudformation Stack aws_sam_expensereceipts-pipeline" \
+    --name "/service/aws-sam-expensereceipts/github/user" \
+    --description "Github Username for Cloudformation Stack aws-sam-expensereceipts-pipeline" \
     --type "String" \
-    --value "GITHUB_USER"
+    --value "GITHUB_USER"  --region eu-central-1
 ```
 
 **NOTE:** Keep in mind that these Parameters will only be available within the same region you're deploying this Pipeline stack. Also, if these values ever change you will need to [update these parameters](https://docs.aws.amazon.com/cli/latest/reference/ssm/put-parameter.html) as well as update the "aws_sam_expensereceipts-pipeline" Cloudformation stack.
