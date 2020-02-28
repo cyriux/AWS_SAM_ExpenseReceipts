@@ -99,8 +99,8 @@ This may take a couple of minutes to complete, therefore give it a minute or two
 
 ```bash
 aws cloudformation describe-stacks \
-    --stack-name aws-sam-expensereceipts-pipeline \
-    --query 'Stacks[].Outputs' --region eu-central-1
+    --stack-name aws-sam-expensereceipts-pipeline --region eu-central-1 \
+    --query 'Stacks[].Outputs' 
 ```
 
 ## Release through the newly built Pipeline
