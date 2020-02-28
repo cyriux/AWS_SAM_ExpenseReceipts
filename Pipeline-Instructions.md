@@ -21,19 +21,19 @@ aws ssm put-parameter \
     --name "/service/aws-sam-expensereceipts/github/repo" \
     --description "Github Repository name for Cloudformation Stack aws-sam-expensereceipts-pipeline" \
     --type "String" \
-    --value "GITHUB_REPO_NAME"  --region eu-central-1
+    --value "AWS_SAM_ExpenseReceipts"  --region eu-central-1 --overwrite
 
 aws ssm put-parameter \
     --name "/service/aws-sam-expensereceipts/github/token" \
     --description "Github Token for Cloudformation Stack aws-sam-expensereceipts-pipeline" \
     --type "String" \
-    --value "TOKEN"  --region eu-central-1
+    --value "4959c3d0445fe6f590afb42df5b2989c49ef00db"  --region eu-central-1 --overwrite
 
 aws ssm put-parameter \
     --name "/service/aws-sam-expensereceipts/github/user" \
     --description "Github Username for Cloudformation Stack aws-sam-expensereceipts-pipeline" \
     --type "String" \
-    --value "GITHUB_USER"  --region eu-central-1
+    --value "cyriux"  --region eu-central-1 --overwrite
 ```
 
 **NOTE:** Keep in mind that these Parameters will only be available within the same region you're deploying this Pipeline stack. Also, if these values ever change you will need to [update these parameters](https://docs.aws.amazon.com/cli/latest/reference/ssm/put-parameter.html) as well as update the "aws_sam_expensereceipts-pipeline" Cloudformation stack.
