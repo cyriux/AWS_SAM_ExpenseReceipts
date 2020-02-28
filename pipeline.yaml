@@ -56,7 +56,7 @@ Resources:
               Value: !Ref AWS::StackName
             -
               Key: "Project"
-              Value: AWS_SAM_ExpenseReceipts
+              Value: AWS-SAM-ExpenseReceipts
         DeletionPolicy: Retain
 
 ########  ##     ## #### ##       ########  
@@ -94,7 +94,7 @@ Resources:
                 Value: !Ref AWS::StackName
               -
                 Key: "Project"
-                Value: AWS_SAM_ExpenseReceipts
+                Value: AWS-SAM-ExpenseReceipts
 
 ########  #### ########  ######## ##       #### ##    ## ######## 
 ##     ##  ##  ##     ## ##       ##        ##  ###   ## ##       
