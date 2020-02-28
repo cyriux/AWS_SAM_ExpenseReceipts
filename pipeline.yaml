@@ -71,7 +71,7 @@ Resources:
         Type: AWS::CodeBuild::Project
         Properties:
             Name: aws-sam-expensereceipts
-            Description: Build project for the AWS_SAM_ExpenseReceipts
+            Description: Build project for the AWS-SAM-ExpenseReceipts
             Artifacts:
               Type: CODEPIPELINE
             Environment: 
