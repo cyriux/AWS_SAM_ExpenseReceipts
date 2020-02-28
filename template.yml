@@ -1,0 +1,79 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Resources:
+  ExpenseApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Api Gateway For Expense
+      StageName: prod
+
+  EnterReceiptsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs12.x
+      CodeUri: src/enter-receipts/
+      Handler: index.handler
+      Events:
+        EnterReceiptsAPI:
+          Type: Api
+          Properties:
+            Path: /receipt
+            Method: POST
+            RestApiId: !Ref ExpenseApi
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource: !GetAtt "DynamoDBTable.Arn"
+
+  UpdateExpenseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs12.x
+      CodeUri: src/update-expense/
+      Handler: index.handler
+      Events:
+        UpdateExpenseAPI:
+          Type: Api
+          Properties:
+            Path: /expenses/{expenseId}
+            Method: PUT
+            RestApiId: !Ref ExpenseApi
+  ListExpensesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs12.x
+      CodeUri: src/list-expenses/
+      Handler: index.handler
+      Events:
+        ListExpensesAPI:
+          Type: Api
+          Properties:
+            Path: /expenses
+            Method: GET
+            RestApiId: !Ref ExpenseApi
+  
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "Expense"
+      AttributeDefinitions:
+        - AttributeName: "expenseId"
+          AttributeType: S
+        - AttributeName: "expenseDate"  
+          AttributeType: S
+      KeySchema:
+        - AttributeName: "expenseId"
+          KeyType: HASH
+        - AttributeName: "expenseDate"
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+      SSESpecification:
+        SSEEnabled: True
+
+Outputs: 
+  ExpenseApi:
+    Value: !Sub https://${ExpenseApi}.execute-api.${AWS::Region}.amazonaws.com/prod/
